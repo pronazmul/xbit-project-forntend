@@ -53,7 +53,8 @@ class userController extends Controller
     }
     
     public function dashboard(){
-        return view('dashboard');
+        $user = json_decode(userResistration::where('status','online')->get());
+        return view('dashboard',['user'=>$user]);
     }
 
 

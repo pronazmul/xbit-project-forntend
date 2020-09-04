@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\userResistration;
+use App\uploadModel;
 
 
 class userController extends Controller
@@ -54,7 +55,8 @@ class userController extends Controller
     
     public function dashboard(){
         $user = json_decode(userResistration::where('status','online')->get());
-        return view('dashboard',['user'=>$user]);
+        $paidImg = json_decode(uploadModel::where('status','paid')->orderBy('id','desc')->limit(6)->get());
+        return view('dashboard',['user'=>$user, 'paidImg'=>$paidImg]);
     }
 
 

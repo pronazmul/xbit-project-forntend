@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\visitorModel;
 use App\contractModel;
+use App\uploadModel;
 
 
 class mainController extends Controller
@@ -14,8 +15,10 @@ class mainController extends Controller
     	$ip = $_SERVER['REMOTE_ADDR'];
     	date_default_timezone_set('Asia/Dhaka');
     	$time = date('D:M:Y, h:i:s a');
-    	visitorModel::insert(['ip_address'=> $ip, 'time'=>$time]);
-        	return view('home');
+        visitorModel::insert(['ip_address'=> $ip, 'time'=>$time]);
+        
+        $freeImg = json_decode(uploadModel::where('status','free')->orderBy('id','desc')->limit(6)->get());
+        return view('home', ['freeImg'=>$freeImg]);
    }
 
     public function insertContractData(Request $req){

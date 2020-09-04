@@ -17,10 +17,29 @@
                 </div>
         </div>
 	<div class="container pb-5">
-    <h1 class='text-center text-color mx-auto display-4'>Welcome {{Session::get('name')}}</h1><hr>
-        <div class="col-md-7 mx-auto">
-                <img class='d-block w-75 mx-auto py-3' src="images/dashboard.png" alt="">
-        </div>
+    <h3 class='text-center text-color mx-auto display-4'>Welcome {{Session::get('name')}}</h3><hr>
+    <div class="container-fluid lightgreen py-4">
+    <h4 class="text-success font-weight-bold text-center mb-4">Premium Gallery</h4>
+
+        <div class="container">
+            <div class="tz-gallery">
+
+                <div class="row">
+                @foreach($paidImg as $paidImg)
+                    <div class="col-md-4">
+                        <a class="lightbox" href="admin.laravel.designerbillal.com/storage/app/images/{{$paidImg->image}}">
+                            <img src="admin.laravel.designerbillal.com/storage/app/images/{{$paidImg->image}}" alt="Bridge">
+                        </a>
+                    </div>
+                @endforeach
+        
+                </div>
+        
+            </div>
+        </div>          
+
+    
+</div>
     </div>
 </div>
 
